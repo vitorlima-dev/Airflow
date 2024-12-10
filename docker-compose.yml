@@ -27,7 +27,7 @@ services:
       _AIRFLOW_DB_UPGRADE: 'true'
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: airflow
-      _AIRFLOW_WWW_USER_PASSWORD: MPCE@airflow
+      _AIRFLOW_WWW_USER_PASSWORD: airflow
     ports:
       - "8080:8080"
     healthcheck:
@@ -49,7 +49,7 @@ services:
       - minio-storage-volume:/data
     environment:
       MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: MPCE@minio
+      MINIO_ROOT_PASSWORD: minio
     command: server --console-address ":9001" /data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:9000/minio/health/live"]
