@@ -20,8 +20,8 @@ Este repositório configura um ambiente completo para o **Apache Airflow**, com 
 1. **Clone o repositório**:
 
     ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
+    git clone https://github.com/vitorlima-dev/Airflow.git
+    cd Airflow
     ```
 
 2. **Crie os containers e inicie os serviços**:
