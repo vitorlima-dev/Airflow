@@ -1,83 +1,82 @@
-# Airflow com Docker Compose
+# Airflow with Docker Compose
 
-Este repositório configura um ambiente completo para o **Apache Airflow**, com **PostgreSQL** como banco de dados backend e **MinIO** para armazenamento de dados. Utilizando o Docker Compose, este setup facilita a configuração e a execução do Airflow de forma isolada e prática.
+This repository sets up a complete environment for **Apache Airflow**, using **PostgreSQL** as the backend database and **MinIO** for data storage. With Docker Compose, this setup makes it easy to configure and run Airflow in an isolated and practical way.
 
-## Componentes
+## Components
 
-- **PostgreSQL**: Usado como banco de dados backend para armazenar o estado das tarefas e DAGs no Airflow.
-- **Airflow**: A aplicação principal para orquestração de fluxos de trabalho (DAGs).
-- **MinIO**: Solução de armazenamento de objetos compatível com o S3, usada para armazenar dados e arquivos no Airflow.
+- **PostgreSQL**: Used as the backend database to store task states and DAGs in Airflow.
+- **Airflow**: The main application for orchestrating workflows (DAGs).
+- **MinIO**: An object storage solution compatible with S3, used to store data and files in Airflow.
 
-## Pré-requisitos
+## Prerequisites
 
-- **Docker** e **Docker Compose** instalados na sua máquina.
+- **Docker** and **Docker Compose** installed on your machine.
+  - [Install Docker](https://docs.docker.com/get-docker/)
+  - [Install Docker Compose](https://docs.docker.com/compose/install/)
 
-    - [Instalar Docker](https://docs.docker.com/get-docker/)
-    - [Instalar Docker Compose](https://docs.docker.com/compose/install/)
+## How to Use
 
-## Como usar
-
-1. **Clone o repositório**:
+1. **Clone the repository**:
 
     ```bash
     git clone https://github.com/vitorlima-dev/Airflow.git
     cd Airflow
     ```
 
-2. **Crie os containers e inicie os serviços**:
+2. **Create the containers and start the services**:
 
-    Execute o comando abaixo para iniciar todos os containers do Docker definidos no arquivo `docker-compose.yml`:
+    Run the following command to start all Docker containers defined in the `docker-compose.yml` file:
 
     ```bash
     docker-compose up -d
     ```
 
-    O comando irá:
+    This command will:
 
-    - Baixar as imagens do Docker necessárias (PostgreSQL, Airflow, MinIO).
-    - Criar os containers e configurá-los para rodar em segundo plano.
+    - Download the necessary Docker images (PostgreSQL, Airflow, MinIO).
+    - Create the containers and configure them to run in the background.
 
-3. **Acessando a interface do Airflow**:
+3. **Accessing the Airflow interface**:
 
-    Após os containers serem inicializados, você pode acessar a interface web do Airflow em [http://localhost:8080](http://localhost:8080) no seu navegador.
+    After the containers are initialized, you can access the Airflow web interface at [http://localhost:8080](http://localhost:8080) in your browser.
 
-    - **Usuário padrão**: `airflow`
-    - **Senha padrão**: `airflow`
+    - **Default username**: `airflow`
+    - **Default password**: `airflow`
 
-4. **Acessando o MinIO**:
+4. **Accessing MinIO**:
 
-    Você pode acessar a interface do MinIO em [http://localhost:9001](http://localhost:9001) com as credenciais:
+    You can access the MinIO web interface at [http://localhost:9001](http://localhost:9001) with the following credentials:
 
-    - **Usuário**: `minio`
-    - **Senha**: `minio`
+    - **Username**: `minio`
+    - **Password**: `minio`
 
-5. **Parar os containers**:
+5. **Stopping the containers**:
 
-    Para parar todos os containers, execute:
+    To stop all containers, run:
 
     ```bash
     docker-compose down
     ```
 
-## Estrutura do projeto
+## Project Structure
 
-- `airflow-setup/`: Contém a configuração do Airflow, incluindo o arquivo `Dockerfile` e o arquivo de configuração `airflow.cfg`.
-- `dags/`: Diretório onde os arquivos DAGs do Airflow serão armazenados.
-- `docker-compose.yml`: Arquivo de configuração do Docker Compose que define todos os serviços necessários.
+- `airflow-setup/`: Contains Airflow configuration, including the `Dockerfile` and the `airflow.cfg` configuration file.
+- `dags/`: Directory where the Airflow DAG files will be stored.
+- `docker-compose.yml`: Docker Compose configuration file that defines all required services.
 
 ## Volumes
 
-Este setup utiliza volumes para persistência de dados:
+This setup uses volumes for data persistence:
 
-- **postgres-db-volume**: Armazena os dados do banco de dados PostgreSQL.
-- **minio-storage-volume**: Armazena os dados do MinIO.
+- **postgres-db-volume**: Stores the PostgreSQL database data.
+- **minio-storage-volume**: Stores MinIO data.
 
-## Customizações
+## Customizations
 
-- Se precisar de customizações no Airflow, você pode editar o arquivo `airflow.cfg` localizado no diretório `./airflow-setup/`.
-- Os DAGs podem ser adicionados diretamente no diretório `./dags/`.
+- If you need to customize Airflow, you can edit the `airflow.cfg` file located in the `./airflow-setup/` directory.
+- DAGs can be added directly to the `./dags/` directory.
 
-## Considerações
+## Considerations
 
-- O Airflow é configurado para rodar de forma isolada com uma base de dados PostgreSQL e MinIO para armazenar arquivos.
-- A configuração inicial do banco de dados Airflow será feita automaticamente com a variável `_AIRFLOW_DB_UPGRADE: 'true'`.
+- Airflow is configured to run in isolation with a PostgreSQL database and MinIO for file storage.
+- The initial database setup for Airflow will be done automatically using the `_AIRFLOW_DB_UPGRADE: 'true'` environment variable.
